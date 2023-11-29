@@ -1,7 +1,12 @@
 package com.servicepayment.demo.entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="tbl_typeService")
 public class typeservice {
