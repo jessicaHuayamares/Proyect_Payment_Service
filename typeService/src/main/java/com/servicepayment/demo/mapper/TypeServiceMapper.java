@@ -7,5 +7,5 @@ import com.servicepayment.demo.entity.typeservice;
 
 public interface TypeServiceMapper {
     typeservice toEntity(TipeServiceDTO typeServiceDTO);
-    TipeServiceDTO toDTO(typeservice typeservice );
+    TipeServiceDTO toDTO(typeservice typeservice);
 }
