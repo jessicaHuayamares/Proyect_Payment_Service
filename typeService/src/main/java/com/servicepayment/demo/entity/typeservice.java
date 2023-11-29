@@ -3,11 +3,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
 @Table(name="tbl_typeService")
 public class typeservice {
     @Id
