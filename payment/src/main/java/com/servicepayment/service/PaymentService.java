@@ -1,36 +1,39 @@
 package com.servicepayment.service;
 
-import com.servicepayment.dto.PaymentDTO;
 import com.servicepayment.entity.Payment;
 import com.servicepayment.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class PaymentService {
-    //private final HashMap<Long, PaymentDTO> paymentRepository = new HashMap<>();
-    @Autowired
-    PaymentRepository paymentRepository;
 
-    public List<Payment> getpayments(){
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    public List<Payment> listAllPayments() {
         return paymentRepository.findAll();
     }
 
-    //buscar typo de servicio a traves del id
-    public Optional<Payment> getpayments(Long id){
-        return paymentRepository.findById(id);
+    public Payment getPayment(Long id) {
+        return paymentRepository.findById(id).orElse(null);
     }
 
-    //guardar y actualizar
-
-    public void saveOrUpdate(Payment payment){
-        paymentRepository.save(payment);
+    public Payment createPayment(Payment payment) {
+        return paymentRepository.save(payment);
     }
-    //borrar
-    public void delete(Long id){
-        paymentRepository.deleteById(id);
+
+    public Payment deletePayment(Long id) {
+        Payment payment = paymentRepository.findById(id).orElse(null);
+        if (payment != null) {
+            paymentRepository.delete(payment);
+        }
+        return payment;
+    }
+
+    public Payment makePayment(Payment payment) {
+        return paymentRepository.save(payment);
     }
 }

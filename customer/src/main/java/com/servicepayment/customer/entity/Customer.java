@@ -3,6 +3,9 @@ package com.servicepayment.customer.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
+import com.servicepayment.customer.entity.Payment;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +22,6 @@ public class Customer {
 
     @Column(nullable = false)
     private String accountNumber;
+    @OneToMany(mappedBy = "customer")
+    private List<Payment> payments;
 }

@@ -1,9 +1,7 @@
-package com.servicepayment.customer.service;
+package com.servicepayment.service;
 
-import com.servicepayment.customer.dto.PaymentDTO;
-import com.servicepayment.customer.entity.Customer;
-import com.servicepayment.customer.entity.Payment;
-import com.servicepayment.customer.repository.CustomerRepository;
+import com.servicepayment.entity.Customer;
+import com.servicepayment.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +36,4 @@ public class CustomerService {
     public void delete(Long id){
         customerRepository.deleteById(id);
     }
-
 }
