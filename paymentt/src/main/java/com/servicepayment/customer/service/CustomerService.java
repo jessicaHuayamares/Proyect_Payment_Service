@@ -20,12 +20,12 @@ public class CustomerService {
 
     public Customer getCustomerById(Long id){
         return customerRepository.findById(id).orElse(null);
-    } 
+    }
 
     public void saveOrUpdate(Customer customer){
         customerRepository.save(customer);
     }
-    // Ejemplo de cómo podría ser el método en CustomerService
+
     public List<Customer> save(List<Customer> customers) {
         List<Customer> savedCustomers = new ArrayList<>();
         for (Customer customer : customers) {
@@ -33,6 +33,16 @@ public class CustomerService {
         }
         return savedCustomers;
     }
+    public Customer getCustomerByAccountNumber(String account_number){
+        Optional<Customer> customerOptional = customerRepository.findByFinancialInformation_AccountNumber(account_number);
+
+        if (customerOptional.isPresent()) {
+            return customerOptional.get();
+        } else {
+            throw new IllegalArgumentException("No customer found with account number: " + account_number);
+        }
+    }
+
 
     public Customer updateCustomer(Customer updatedCustomer) {
         Long customerId = updatedCustomer.getCustomerId();

@@ -1,7 +1,8 @@
-import org.mapstruct.Mapper;
+package com.servicepayment.customer.mapper;
 
-import com.servicepayment.dto.PaymentDTO;
-import com.servicepayment.entity.Payment;
+import com.servicepayment.customer.dto.PaymentDTO;
+import com.servicepayment.customer.entity.Payment;
+import org.mapstruct.Mapper;
 
 import java.util.List;
 

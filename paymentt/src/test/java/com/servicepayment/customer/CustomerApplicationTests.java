@@ -12,12 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.mockito.Mockito.*;
 @SpringBootTest
 class CustomerApplicationTests {
+
 		@Mock
 		private CustomerRepository customerRepository;
-
 		@Mock
 		private CustomerService customerService;
-
 		@InjectMocks
 		private CustomerController customerController;
 		@Test
@@ -28,7 +27,6 @@ class CustomerApplicationTests {
 			customer.setLastname("Doe");
 			customer.setDni("123456789");
 
-			// Creación de Financial_Information
 			Financial_Information financialInformation = new Financial_Information();
 			financialInformation.setId(1L);
 			financialInformation.setAccountType("Savings");
@@ -36,11 +34,7 @@ class CustomerApplicationTests {
 			financialInformation.setAmount(1000.0f);
 
 			customer.setFinancialInformation(financialInformation);
-
-			// Ejecutar el método saveOrUpdate
 			customerController.saveUpdate(customer);
-
-			// Verificar que el método saveOrUpdate del servicio se llamó con el objeto Customer
 			verify(customerService, times(1)).saveOrUpdate(customer);
 		}
 	}

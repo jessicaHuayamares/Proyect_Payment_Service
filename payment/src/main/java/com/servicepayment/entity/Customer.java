@@ -11,15 +11,18 @@ import org.antlr.v4.runtime.misc.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
-@Table(name="tbl_accounts")
+@Table(name="tbl_customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
+
     @Column(name = "name", nullable = false)
     private String name;
+
     @Column(name = "last_name", nullable = false)
     private String lastname;
+
     @Column(name = "phone_number", nullable = false)
     private String phone;
 

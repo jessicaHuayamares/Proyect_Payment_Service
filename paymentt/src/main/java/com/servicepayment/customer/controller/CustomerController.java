@@ -23,7 +23,7 @@ public class CustomerController {
         }
         return ResponseEntity.ok(customers);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id){
         Customer customer = customerService.getCustomerById(id);
         if(customer == null){
@@ -31,6 +31,16 @@ public class CustomerController {
         }
         return ResponseEntity.ok(customer);
     }
+
+    @GetMapping("/{account_number}")
+    public ResponseEntity<Customer> getCustomerByAccountNumber(@PathVariable("account_number") String account_number){
+        Customer customer = customerService.getCustomerByAccountNumber(account_number);
+        if(customer == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(customer);
+    }
+
 
     @PostMapping
     public void saveUpdate(@RequestBody Customer customer) {
@@ -42,16 +52,28 @@ public class CustomerController {
         return customerService.save(customers);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public Customer updateCustomer(@RequestBody Customer customer){
         return customerService.updateCustomer(customer);
+    }
+
+    @PutMapping("/update/{account_number}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable("account_number") String accountNumber, @RequestBody Customer updatedCustomer) {
+        Customer existingCustomer = customerService.getCustomerByAccountNumber(accountNumber);
+        // Actualizar los campos necesarios del cliente existente
+        existingCustomer.setName(updatedCustomer.getName());
+        existingCustomer.setFinancialInformation(updatedCustomer.getFinancialInformation());
+
+        // Luego, realiza la actualización en el servicio
+        Customer updated = customerService.updateCustomer(existingCustomer);
+        return ResponseEntity.ok(updated);
+
     }
 
     @DeleteMapping("/{customerId}")
     public void saveUpdate(@PathVariable("customerId") Long customerId) {
         customerService.delete(customerId);
     }
-
 
 
 }
